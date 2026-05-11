@@ -1,1 +1,28 @@
+import numpy as np
+import matplotlib.pyplot as plt
 
+# Parte C: Relação f0 (Hz) e w (rad/amostra)
+f0 = 1000     # 1 kHz
+fs1 = 8000    # 8 kHz
+fs2 = 44100   # 44.1 kHz
+
+w0_1 = 2 * np.pi * f0 / fs1
+w0_2 = 2 * np.pi * f0 / fs2
+
+n_c1 = np.arange(0, int(0.01 * fs1))
+n_c2 = np.arange(0, int(0.01 * fs2))
+
+xc1 = np.cos(w0_1 * n_c1)
+xc2 = np.cos(w0_2 * n_c2)
+
+plt.figure(figsize=(10, 4))
+plt.stem(n_c1, xc1)
+plt.title(f'Amostragem a {fs1/1000} kHz (w0 = {w0_1:.2f} rad/amostra)')
+plt.grid(True)
+
+plt.figure(figsize=(10, 4))
+plt.stem(n_c2, xc2)
+plt.title(f'Amostragem a {fs2/1000} kHz (w0 = {w0_2:.2f} rad/amostra)')
+plt.grid(True)
+
+plt.show()
